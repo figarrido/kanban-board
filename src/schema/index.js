@@ -3,9 +3,9 @@ const { makeExecutableSchema } = require('graphql-tools')
 const { mergeResolvers } = require('../utils')
 
 const {
-  userTypeDef,
-  userResolver,
-} = require('./users')
+  boardTypeDef,
+  boardResolver,
+} = require('./boards')
 
 const defaultTypeDef = `
   type Query {
@@ -19,11 +19,11 @@ const defaultTypeDef = `
 
 const typeDefs = [
   defaultTypeDef,
-  userTypeDef,
+  boardTypeDef,
 ]
 
 const resolvers = mergeResolvers([
-  userResolver,
+  boardResolver,
 ])
 
 module.exports = makeExecutableSchema({
