@@ -18,12 +18,10 @@ const boardTypeDef = `
   }
 `
 
-const findBoardById = id => Board.findById(id)
-
 const boardResolver = {
   Query: {
     board: async (parent, args) => {
-      return await findBoardById(args.id)
+      return await Board.findById(args.id)
     },
     boards: async (parent, args) => {
       const regexName = new RegExp(args.name, 'i')
@@ -36,13 +34,13 @@ const boardResolver = {
       return newBoard
     },
     updateBoard: async (parent, args) => {
-      const board = await findBoardById(args.id)
+      const board = await Board.findById(args.id)
       board.name = args.name
       await board.save()
       return board
     },
     deleteBoard: async (parent, args) => {
-      const board = await findBoardById(args.id)
+      const board = await Board.findById(args.id)
       await board.remove()
       return board
     },
