@@ -1,4 +1,4 @@
-const modelsPath = require("path").join(__dirname)
+const modelsPath = require('path').join(__dirname) // eslint-disable-line
 
 const models = {}
 

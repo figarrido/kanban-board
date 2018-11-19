@@ -1,5 +1,5 @@
 const Router = require('koa-router')
-const routesPath = require("path").join(__dirname)
+const routesPath = require('path').join(__dirname) // eslint-disable-line
 
 const mainRouter = new Router()
 

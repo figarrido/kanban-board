@@ -1,10 +1,12 @@
+/* eslint no-console: 0 */
+
 // Set environment variables in process.env
 require('dotenv').config()
 
 // Create MongoDB connection
 require('./config/database')
 
-const { ApolloServer, gql } = require('apollo-server-koa')
+const { ApolloServer } = require('apollo-server-koa')
 const Koa = require('koa')
 const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
@@ -37,7 +39,7 @@ app.use(routes.routes())
 app.on('error', (err, ctx) => {
   console.log('An error occurred!')
   console.log(`Error message: ${err}`)
-  console.log(`Context:`)
+  console.log('Context:')
   console.log(ctx)
 })
 

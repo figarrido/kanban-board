@@ -22,26 +22,26 @@ const findBoardById = id => Board.findById(id)
 
 const boardResolver = {
   Query: {
-    board: async (parent, args, context, info) => {
+    board: async (parent, args) => {
       return await findBoardById(args.id)
     },
-    boards: async (parent, args, context, info) => {
+    boards: async (parent, args) => {
       const regexName = new RegExp(args.name, 'i')
       return await Board.find({ name: regexName })
     },
   },
   Mutation: {
-    createBoard: async (parent, args, context, info) => {
+    createBoard: async (parent, args) => {
       const newBoard = await Board.create(args)
       return newBoard
     },
-    updateBoard: async (parent, args, context, info) => {
+    updateBoard: async (parent, args) => {
       const board = await findBoardById(args.id)
       board.name = args.name
       await board.save()
       return board
     },
-    deleteBoard: async (parent, args, context, info) => {
+    deleteBoard: async (parent, args) => {
       const board = await findBoardById(args.id)
       await board.remove()
       return board

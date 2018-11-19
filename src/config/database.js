@@ -1,3 +1,4 @@
+/* eslint no-console: 0 */
 const mongoose = require('mongoose')
 
 const { MONGO_HOST, MONGO_PORT, MONGO_NAME } = process.env

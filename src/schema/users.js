@@ -1,5 +1,3 @@
-const { Board } = require('../models')
-
 const userTypeDef = `
   extend type Query {
     users: [User]
@@ -15,7 +13,7 @@ const userResolver = {
     users: () => {}
   },
   User: {
-    email: user => {}
+    email: () => {}
   }
 }
 
