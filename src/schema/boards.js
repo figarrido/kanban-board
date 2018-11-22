@@ -1,4 +1,10 @@
-const { Board } = require('../models')
+const {
+  getBoardById,
+  getBoardsByName,
+  createBoard,
+  updateBoard,
+  deleteBoard,
+} = require('./boards.resolvers')
 
 const boardTypeDef = `
   extend type Query {
@@ -20,30 +26,13 @@ const boardTypeDef = `
 
 const boardResolver = {
   Query: {
-    board: async (parent, args) => {
-      return await Board.findById(args.id)
-    },
-    boards: async (parent, args) => {
-      const regexName = new RegExp(args.name, 'i')
-      return await Board.find({ name: regexName })
-    },
+    board: getBoardById,
+    boards: getBoardsByName,
   },
   Mutation: {
-    createBoard: async (parent, args) => {
-      const newBoard = await Board.create(args)
-      return newBoard
-    },
-    updateBoard: async (parent, args) => {
-      const board = await Board.findById(args.id)
-      board.name = args.name
-      await board.save()
-      return board
-    },
-    deleteBoard: async (parent, args) => {
-      const board = await Board.findById(args.id)
-      await board.remove()
-      return board
-    },
+    createBoard: createBoard,
+    updateBoard: updateBoard,
+    deleteBoard: deleteBoard,
   },
   Board: {
     id: board => board._id.toString(),
