@@ -22,7 +22,10 @@ const schema = require('./schema')
 
 const { APP_PORT } = process.env
 const app = new Koa()
-const apolloServer = new ApolloServer({ schema })
+const apolloServer = new ApolloServer({
+  schema,
+  context: ({ ctx }) => ctx,
+})
 
 // Set koa application in Apollo server
 apolloServer.applyMiddleware({ app })
