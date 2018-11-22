@@ -1,3 +1,5 @@
+const { pick } = require('ramda')
+
 const getBoardById = async (_, args, { models: { Board } }) => {
   const board = await Board.findById(args.id)
   return board
@@ -9,7 +11,8 @@ const getBoardsByName = async (_, args, { models: { Board } }) => {
 }
 
 const createBoard = async (_, args, { models: { Board } }) => {
-  const newBoard = await Board.create(args)
+  const boardParams = cleanBoardParameters(args)
+  const newBoard = await Board.create(boardParams)
   return newBoard
 }
 
@@ -33,3 +36,5 @@ module.exports = {
   updateBoard,
   deleteBoard,
 }
+
+const cleanBoardParameters = boardParams => pick(['name'], boardParams)
