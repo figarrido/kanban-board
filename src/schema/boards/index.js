@@ -1,3 +1,4 @@
+const { pipe, prop, toString} = require('ramda')
 const {
   getBoardById,
   getBoardsByName,
@@ -35,8 +36,8 @@ const boardResolver = {
     deleteBoard: deleteBoard,
   },
   Board: {
-    id: board => board._id.toString(),
-    name: board => board.name
+    id: pipe(prop('_id'), toString),
+    name: prop('name'),
   }
 }
 
