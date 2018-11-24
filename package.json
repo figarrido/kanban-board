@@ -24,6 +24,7 @@
     "ramda": "^0.25.0"
   },
   "devDependencies": {
+    "casual": "^1.5.19",
     "eslint": "^5.9.0",
     "eslint-plugin-prettier": "^3.0.0",
     "jest": "^23.6.0",
