@@ -1,7 +1,9 @@
-const { reduce, mergeDeepRight} = require('ramda')
+const { reduce, mergeDeepRight, concat } = require('ramda')
 
-const mergeResolvers = resolvers => reduce(mergeDeepRight, {}, resolvers)
+const mergeResolvers = reduce(mergeDeepRight, {})
+const concatTypeDefs = reduce(concat, '')
 
 module.exports = {
   mergeResolvers,
+  concatTypeDefs,
 }

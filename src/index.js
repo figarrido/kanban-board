@@ -18,12 +18,13 @@ const models = require('./models')
 const routes = require('./routes')
 
 // GraphQL schema
-const schema = require('./schema')
+const { typeDefs, resolvers } = require('./schema')
 
 const { APP_PORT } = process.env
 const app = new Koa()
 const apolloServer = new ApolloServer({
-  schema,
+  typeDefs,
+  resolvers,
   context: ({ ctx }) => ctx,
 })
 

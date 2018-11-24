@@ -1,6 +1,4 @@
-const { makeExecutableSchema } = require('graphql-tools')
-
-const { mergeResolvers } = require('../utils')
+const { mergeResolvers, concatTypeDefs } = require('../utils')
 
 const {
   boardTypeDef,
@@ -17,16 +15,16 @@ const defaultTypeDef = `
   }
 `
 
-const typeDefs = [
+const typeDefs = concatTypeDefs([
   defaultTypeDef,
   boardTypeDef,
-]
+])
 
 const resolvers = mergeResolvers([
   boardResolver,
 ])
 
-module.exports = makeExecutableSchema({
+module.exports = {
   typeDefs: typeDefs,
   resolvers: resolvers,
-})
+}

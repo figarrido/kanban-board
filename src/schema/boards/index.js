@@ -4,7 +4,7 @@ const {
   createBoard,
   updateBoard,
   deleteBoard,
-} = require('./boards.resolvers')
+} = require('./resolvers')
 
 const boardTypeDef = `
   extend type Query {
