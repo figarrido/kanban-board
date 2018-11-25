@@ -23,7 +23,7 @@ describe('Board Schema', () => {
         Board: () => ({
           id: () => casual.integer(1, 1000).toString(),
           name: casual.title,
-        })
+        }),
       },
     })
 
@@ -57,8 +57,8 @@ describe('Board Schema', () => {
         Board: () => ({
           id: () => casual.integer(1, 1000).toString(),
           name: casual.name,
-        })
-      }
+        }),
+      },
     })
 
     const query = `
