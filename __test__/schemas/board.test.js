@@ -82,4 +82,76 @@ describe('Board Schema', () => {
       done.fail(err)
     }
   })
+
+  it('should create a board', async done => {
+    const query = `
+      mutation {
+        createBoard(name: "Board name") {
+          name
+        }
+      }
+    `
+
+    try {
+      const response = await graphql(mockSchema, query)
+      if (response.errors) {
+        const messageError = concatErrors(response.errors)
+        throw new Error(messageError)
+      }
+      expect(response.data.createBoard).toBeDefined()
+      expect(response.data.createBoard.name).toBeTruthy()
+      done()
+    } catch (err) {
+      done.fail(err)
+    }
+    done()
+  })
+
+  it('should upadte a board', async done => {
+    const query = `
+      mutation {
+        updateBoard(id: "1", name: "Board name") {
+          name
+        }
+      }
+    `
+
+    try {
+      const response = await graphql(mockSchema, query)
+      if (response.errors) {
+        const messageError = concatErrors(response.errors)
+        throw new Error(messageError)
+      }
+      expect(response.data.updateBoard).toBeDefined()
+      expect(response.data.updateBoard.name).toBeTruthy()
+      done()
+    } catch (err) {
+      done.fail(err)
+    }
+    done()
+  })
+
+  it('should delete a board', async done => {
+    const query = `
+      mutation {
+        deleteBoard(id: "1") {
+          name
+        }
+      }
+    `
+
+    try {
+      const response = await graphql(mockSchema, query)
+      if (response.errors) {
+        const messageError = concatErrors(response.errors)
+        throw new Error(messageError)
+      }
+      expect(response.data.deleteBoard).toBeDefined()
+      expect(response.data.deleteBoard.name).toBeTruthy()
+      done()
+    } catch (err) {
+      done.fail(err)
+    }
+    done()
+  })
 })
