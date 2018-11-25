@@ -10,11 +10,11 @@ const userTypeDef = `
 
 const userResolver = {
   Query: {
-    users: () => {}
+    users: () => {},
   },
   User: {
-    email: () => {}
-  }
+    email: () => {},
+  },
 }
 
 module.exports = {

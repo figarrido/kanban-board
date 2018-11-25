@@ -38,7 +38,7 @@ const boardResolver = {
   Board: {
     id: pipe(prop('_id'), toString),
     name: prop('name'),
-  }
+  },
 }
 
 module.exports = {

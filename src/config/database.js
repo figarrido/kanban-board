@@ -6,7 +6,7 @@ const { MONGO_HOST, MONGO_PORT, MONGO_NAME } = process.env
 const dbUrl = `mongodb://${MONGO_HOST}:${MONGO_PORT}/${MONGO_NAME}`
 console.log(dbUrl)
 mongoose.connect(dbUrl, {
-  useNewUrlParser: true
+  useNewUrlParser: true,
 })
 
 mongoose.connection.on('connected', () => {
