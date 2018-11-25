@@ -1,4 +1,4 @@
-const { pipe, prop, toString} = require('ramda')
+const { pipe, prop, toString } = require('ramda')
 const {
   getBoardById,
   getBoardsByName,
