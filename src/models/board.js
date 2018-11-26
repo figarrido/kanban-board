@@ -8,6 +8,12 @@ const BoardSchema = new Schema({
   },
 })
 
+BoardSchema.virtual('lists', {
+  ref: 'List',
+  localField: '_id',
+  foreignField: 'board',
+})
+
 const Board = mongoose.model('Board', BoardSchema)
 
 module.exports = Board
