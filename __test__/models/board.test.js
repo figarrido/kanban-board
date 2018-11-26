@@ -5,6 +5,8 @@ describe('Board', () => {
     const boardName = 'Test Board'
     const board = new Board({ name: boardName })
 
+    await board.validate()
+
     expect(board).not.toBeNull()
     expect(board.name).toBe(boardName)
   })
