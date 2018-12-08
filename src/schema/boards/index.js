@@ -1,10 +1,10 @@
-const { pipe, prop, toString } = require('ramda')
 const {
   getBoardById,
   getBoardsByName,
   createBoard,
   updateBoard,
   deleteBoard,
+  getLists,
 } = require('./resolvers')
 
 const boardTypeDef = `
@@ -22,6 +22,7 @@ const boardTypeDef = `
   type Board {
     id: String
     name: String
+    lists: [List]
   }
 `
 
@@ -31,13 +32,12 @@ const boardResolver = {
     boards: getBoardsByName,
   },
   Mutation: {
-    createBoard: createBoard,
-    updateBoard: updateBoard,
-    deleteBoard: deleteBoard,
+    createBoard,
+    updateBoard,
+    deleteBoard,
   },
   Board: {
-    id: pipe(prop('_id'), toString),
-    name: prop('name'),
+    lists: getLists,
   },
 }
 

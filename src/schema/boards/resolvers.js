@@ -7,7 +7,8 @@ const getBoardById = async (_, args, { models: { Board } }) => {
 
 const getBoardsByName = async (_, args, { models: { Board } }) => {
   const regexName = new RegExp(args.name, 'i')
-  return await Board.find({ name: regexName })
+  const boards = await Board.find({ name: regexName })
+  return boards
 }
 
 const createBoard = async (_, args, { models: { Board } }) => {
@@ -17,9 +18,10 @@ const createBoard = async (_, args, { models: { Board } }) => {
 }
 
 const updateBoard = async (_, args, { models: { Board } }) => {
-  const board = await Board.findById(args.id)
-  board.name = args.name
-  await board.save()
+  const board = await Board.findByIdAndUpdate(
+    args.id,
+    cleanBoardParameters(args)
+  )
   return board
 }
 
@@ -29,12 +31,18 @@ const deleteBoard = async (_, args, { models: { Board } }) => {
   return board
 }
 
+const getLists = async (board, _, { models: { List } }) => {
+  const lists = await List.find({ board: board._id }).populate('board')
+  return lists
+}
+
 module.exports = {
   getBoardById,
   getBoardsByName,
   createBoard,
   updateBoard,
   deleteBoard,
+  getLists,
 }
 
-const cleanBoardParameters = boardParams => pick(['name'], boardParams)
+const cleanBoardParameters = pick(['name'])

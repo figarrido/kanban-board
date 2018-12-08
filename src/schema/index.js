@@ -1,9 +1,17 @@
-const { mergeResolvers, concatTypeDefs } = require('../utils')
+const {
+  mergeResolvers,
+  concatTypeDefs,
+} = require('../utils')
 
 const {
   boardTypeDef,
   boardResolver,
 } = require('./boards')
+
+const {
+  listTypeDef,
+  listResolver,
+} = require('./lists')
 
 const defaultTypeDef = `
   type Query {
@@ -18,10 +26,12 @@ const defaultTypeDef = `
 const typeDefs = concatTypeDefs([
   defaultTypeDef,
   boardTypeDef,
+  listTypeDef,
 ])
 
 const resolvers = mergeResolvers([
   boardResolver,
+  listResolver,
 ])
 
 module.exports = {
