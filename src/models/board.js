@@ -6,12 +6,15 @@ const BoardSchema = new Schema({
     type: String,
     required: true,
   },
+}, {
+  timestamps: {},
 })
 
 BoardSchema.virtual('lists', {
   ref: 'List',
   localField: '_id',
   foreignField: 'board',
+  justOne: false,
 })
 
 const Board = mongoose.model('Board', BoardSchema)
