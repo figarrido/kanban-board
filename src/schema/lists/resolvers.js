@@ -6,8 +6,7 @@ const getListById = async (_, args, { models: { List } }) => {
 }
 
 const getListsByName = async (_, args, { models: { List } }) => {
-  const regexName = new RegExp(args.name, 'i')
-  const lists = await List.find({ name: regexName })
+  const lists = await List.where(args)
   return lists
 }
 
@@ -18,16 +17,13 @@ const createList = async (_, args, { models: { List } }) => {
 }
 
 const updateList = async (_, args, { models: { List } }) => {
-  const list = await List.findByIdAndUpdate(
-    args.id,
-    cleanListParameters(args)
-  )
+  const listParams = cleanListParameters(args)
+  const list = await List.updateWithId(args.id, listParams)
   return list
 }
 
 const deleteList = async (_, args, { models: { List } }) => {
-  const list = await List.findById(args.id)
-  await list.remove()
+  const list = await List.removeWith(args.id)
   return list
 }
 
