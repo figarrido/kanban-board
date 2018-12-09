@@ -27,12 +27,18 @@ const deleteList = async (_, args, { models: { List } }) => {
   return list
 }
 
+const getCards = async (list, _, { models: { Card } }) => {
+  const cards = await Card.getFromList(list.id)
+  return cards
+}
+
 module.exports = {
   getListById,
   getListsByName,
   createList,
   updateList,
   deleteList,
+  getCards,
 }
 
 const cleanListParameters = pick(['name', 'board'])

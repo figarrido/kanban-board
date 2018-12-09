@@ -4,6 +4,7 @@ const {
   createList,
   updateList,
   deleteList,
+  getCards,
 } = require('./resolvers')
 
 const listTypeDef = `
@@ -22,6 +23,7 @@ const listTypeDef = `
     id: String
     name: String
     board: Board
+    cards: [Card]
   }
 `
 
@@ -35,7 +37,9 @@ const listResolver = {
     updateList,
     deleteList,
   },
-  List: {},
+  List: {
+    cards: getCards,
+  },
 }
 
 module.exports = {

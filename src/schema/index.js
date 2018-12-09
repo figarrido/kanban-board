@@ -9,6 +9,11 @@ const {
 } = require('./boards')
 
 const {
+  cardTypeDef,
+  cardResolver,
+} = require('./cards')
+
+const {
   listTypeDef,
   listResolver,
 } = require('./lists')
@@ -27,11 +32,13 @@ const typeDefs = concatTypeDefs([
   defaultTypeDef,
   boardTypeDef,
   listTypeDef,
+  cardTypeDef,
 ])
 
 const resolvers = mergeResolvers([
   boardResolver,
   listResolver,
+  cardResolver,
 ])
 
 module.exports = {
