@@ -1,5 +1,7 @@
 const mongoose = require('mongoose')
 
+const Card = require('./card')
+
 const { Schema } = mongoose
 
 const ListSchema = new Schema({
@@ -43,6 +45,11 @@ ListSchema.pre('find', function() {
 
 ListSchema.pre('save', async function(next) {
   await this.populate('board').execPopulate()
+  next()
+})
+
+ListSchema.pre('remove', async function(next) {
+  await Card.deleteMany({ list: this._id })
   next()
 })
 
