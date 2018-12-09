@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+
 const { Schema } = mongoose
 
 const ListSchema = new Schema({
@@ -43,6 +44,13 @@ ListSchema.pre('find', function() {
 ListSchema.pre('save', async function(next) {
   await this.populate('board').execPopulate()
   next()
+})
+
+ListSchema.virtual('cards', {
+  ref: 'Card',
+  localField: '_id',
+  foreignField: 'list',
+  justOne: false,
 })
 
 ListSchema.loadClass(ListClass)
