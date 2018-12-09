@@ -23,7 +23,7 @@ const updateList = async (_, args, { models: { List } }) => {
 }
 
 const deleteList = async (_, args, { models: { List } }) => {
-  const list = await List.removeWith(args.id)
+  const list = await List.removeWithId(args.id)
   return list
 }
 

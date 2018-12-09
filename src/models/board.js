@@ -1,5 +1,7 @@
 const mongoose = require('mongoose')
 
+const List = require('./list')
+
 const { Schema } = mongoose
 
 const BoardSchema = new Schema({
@@ -27,6 +29,12 @@ class BoardClass {
     return board
   }
 }
+
+BoardSchema.pre('remove', async function(next) {
+  const lists = await List.find({ board: this._id })
+  lists.forEach(async list => await list.remove())
+  next()
+})
 
 BoardSchema.virtual('lists', {
   ref: 'List',
