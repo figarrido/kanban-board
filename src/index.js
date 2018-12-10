@@ -2,14 +2,13 @@
 
 // Set environment variables in process.env
 require('dotenv').config()
-
-// Create MongoDB connection
-require('./config/database')
-
 const { ApolloServer } = require('apollo-server-koa')
 const Koa = require('koa')
 const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
+
+// Create MongoDB connection
+const { connect: connectMongo } = require('./config/database')
 
 // Mongo models
 const models = require('./models')
@@ -20,6 +19,7 @@ const routes = require('./routes')
 // GraphQL schema
 const { typeDefs, resolvers } = require('./schema')
 
+connectMongo()
 const { APP_PORT } = process.env
 const app = new Koa()
 const apolloServer = new ApolloServer({
