@@ -18,7 +18,7 @@ const createCard = async (_, args, { models: { Card } }) => {
 
 const updateCard = async (_, args, { models: { Card } }) => {
   const cardParams = cleanCardParameters(args)
-  const card = await Card.updateWith(args.id, cardParams)
+  const card = await Card.updateWithId(args.id, cardParams)
   return card
 }
 

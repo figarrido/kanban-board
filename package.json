@@ -34,6 +34,9 @@
     "standard-version": "^4.4.0"
   },
   "jest": {
-    "collectCoverage": true
+    "collectCoverage": true,
+    "setupFiles": [
+      "./__test__/setup/mongoose.js"
+    ]
   }
 }

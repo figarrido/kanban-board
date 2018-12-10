@@ -18,7 +18,7 @@ const createBoard = async (_, args, { models: { Board } }) => {
 
 const updateBoard = async (_, args, { models: { Board } }) => {
   const boardParams = cleanBoardParameters(args)
-  const board = await Board.updateWith(args.id, boardParams)
+  const board = await Board.updateWithId(args.id, boardParams)
   return board
 }
 
