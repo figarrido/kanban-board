@@ -89,22 +89,22 @@ describe('Board resolver', () => {
   })
 
   it('should update a board by id', async () => {
-    const updateWith = jest.fn((id, fields) => merge(find(propEq('id', id), db), fields))
+    const updateWithId = jest.fn((id, fields) => merge(find(propEq('id', id), db), fields))
 
     const parent = {}
     const args = { id: '1', name: 'Board' }
     const ctx = {
       models: {
         Board: {
-          updateWith,
+          updateWithId,
         },
       },
     }
 
     const updatedBoard = await updateBoard(parent, args, ctx)
     expect(pick(['id', 'name'], updatedBoard)).toEqual(merge(args, { id: '1' }))
-    expect(updateWith.mock.calls).toHaveLength(1)
-    expect(updateWith.mock.calls[0][0]).toEqual(args.id)
+    expect(updateWithId.mock.calls).toHaveLength(1)
+    expect(updateWithId.mock.calls[0][0]).toEqual(args.id)
   })
 
   it('should update a board by id', async () => {
